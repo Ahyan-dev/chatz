@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahyan's Page</title>
+    <link rel="Stylesheet" href="/static/style.css">
+</head>
+<body class="all-page">
+    <form action="/main/{{name}}" method="post">
+        <div class="grid">
+            <div class="helloworld">
+                <h1>Hello {{name}}</h1>
+            </div>
+            <br>
+            <input type="text" placeholder="Type here" class="text" name="textarea" required>
+            <br>
+            <button type="submit" class="submit">submit</button>
+            <br>
+            <form action="/delete" method="post">
+            <a class="delete" href="/goTodelete?name={{name}}">🗑️</a>
+            </form>
+            <br>
+            <div class="displaylist">
+                <div class="box">
+                    <input type="checkbox" class="current">current</input>
+                    <input type="checkbox" class="history">History</input>
+                </div>
+                <div class="current">
+                    <div class="Current">    
+                        <ul>
+                            {% for message in messages %}
+                                <li style="display:block ;"><a name="single_delete" href="/single_delete/name={{name}}?ROWID={{message[0]}}">🗑️</a>{{message[1]}}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="history">
+                    <div class="History">
+                        <ul>
+                            {% for message in messages %}
+                                <li style="display:block ;">{{message[1]}}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
